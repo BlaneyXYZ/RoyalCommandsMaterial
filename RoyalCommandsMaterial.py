@@ -47,15 +47,15 @@ def createAlias(material):
             x = re.search("^(.+)_(.+)", material)
             alias.append("{}:{}".format(x[2], x[1]))
     alias_string = ','.join(alias)
-    return alias_string
+    return alias_string.lower()
 
 page = requests.get("https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html")
 soup = BeautifulSoup(page.content, 'html.parser')
 table = soup.find('section', class_='constants-summary')
 for data in table.find_all('div', class_='col-first'):
     for item in data.find_all('a'):
-        row = [item.text, 0, "{}".format(createAlias(item.text.lower()))]
-        with open('items.csv', 'a', encoding='UTF8', newline='') as f:
-            writer = csv.writer(f)
+        row = [item.text, 0, '{}'.format(createAlias(item.text))]
+        with open('items.csv', 'a', encoding='UTF8', newline='', ) as f:
+            writer = csv.writer(f, quotechar="\"", quoting=csv.QUOTE_ALL)
             # write the data
             writer.writerow(row)
