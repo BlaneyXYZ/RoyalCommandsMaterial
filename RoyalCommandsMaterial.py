@@ -6,7 +6,7 @@ os.remove("items.csv") # bad but I lazy
 def createAlias(material):
     material_re = re.compile("^(.+)_(.+)")
     if "LEGACY_" in material:
-        return
+        return None
     alias = []
     alias.append(material.replace("_", ""))
     if "_SPAWN_EGG" in material:
@@ -54,8 +54,9 @@ soup = BeautifulSoup(page.content, 'html.parser')
 table = soup.find('section', class_='constants-summary')
 for data in table.find_all('div', class_='col-first'):
     for item in data.find_all('a'):
-        row = [item.text, 0, '{}'.format(createAlias(item.text))]
-        with open('items.csv', 'a', encoding='UTF8', newline='', ) as f:
-            writer = csv.writer(f, quotechar="\"", quoting=csv.QUOTE_ALL)
-            # write the data
-            writer.writerow(row)
+        if(createAlias(item.text)):
+            row = [item.text, 0, '{}'.format(createAlias(item.text))]
+            with open('items.csv', 'a', encoding='UTF8', newline='', ) as f:
+                writer = csv.writer(f, quotechar="\"", quoting=csv.QUOTE_ALL)
+                # write the data
+                writer.writerow(row)
