@@ -8,13 +8,22 @@ def createAlias(material):
     if "LEGACY_" in material:
         return None
     alias = []
-    alias.append(material.replace("_", ""))
+    alias.append(material)
+    #alias.append(material.replace("_", "")) Unsure about this one
     if "_SPAWN_EGG" in material:
         material = material.replace("_SPAWN", "")
         if material_re.search(material):
             x = re.search("^(.+)_(.+)", material)
             alias.append("{}:{}".format(x[2], x[1]))
     if "_WOOD" in material:
+        if material_re.search(material):
+            x = re.search("^(.+)_(.+)", material)
+            alias.append("{}:{}".format(x[2], x[1]))
+    if "_LOG" in material:
+        if material_re.search(material):
+            x = re.search("^(.+)_(.+)", material)
+            alias.append("{}:{}".format(x[2], x[1]))
+    if "_PLANKS" in material:
         if material_re.search(material):
             x = re.search("^(.+)_(.+)", material)
             alias.append("{}:{}".format(x[2], x[1]))
