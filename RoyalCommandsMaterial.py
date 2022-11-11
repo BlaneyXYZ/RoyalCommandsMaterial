@@ -1,6 +1,8 @@
 import requests, re, csv, os
 from bs4 import BeautifulSoup
 
+os.remove("items.csv") # bad but I lazy
+
 def createAlias(material):
     material_re = re.compile("^(.+)_(.+)")
     if "LEGACY_" in material:
