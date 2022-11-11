@@ -21,8 +21,9 @@ jobs:
           python RoyalCommandsMaterial.py
         env:
           key: ${{ secrets.key }} # if run.py requires passwords..etc, set it as secrets
-      - name: Archive file
-        uses: actions/upload-artifact@v3
-        with:
-          name: items
-          path: items.csv
+      - name: Commit items
+        run: |
+          git config --global user.name 'BlaneyXYZ'
+          git config --global user.email 'blaneyxyz@users.noreply.github.com'
+          git commit -am "Automated update"
+          git push
