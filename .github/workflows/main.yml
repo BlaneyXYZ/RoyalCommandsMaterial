@@ -20,7 +20,7 @@ jobs:
         run: |
           python RoyalCommandsMaterial.py
         env:
-          key: ${{ secrets.key }} # if run.py requires passwords..etc, set it as secrets
+          key: ${{ secrets.key }}
       - name: Commit items
         run: |
           git config --global user.name 'BlaneyXYZ'
