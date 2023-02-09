@@ -1,9 +1,9 @@
 import requests, re, csv, os
 from bs4 import BeautifulSoup
 
-file = "items.csv"
-if file.exists():
-    os.remove(file) # bad but I lazy
+file_name = "items.csv"
+if os.path.exists(file_name):
+    os.remove(file_name) # bad but I lazy
 
 def createAlias(material):
     material_re = re.compile("^(.+)_(.+)")
